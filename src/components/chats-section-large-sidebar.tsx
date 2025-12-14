@@ -5,6 +5,8 @@ import ChatsSideBarContent from './chats-sidebar-content';
 import ChatsSearchHeaderLargeSidebar from './chats-search-header-large-sidebar';
 import { useState } from 'react';
 import NotificationServicesPermissionAlert from './notification-services-permission-alert';
+import Fab from '@mui/material/Fab';
+import { Add } from '@mui/icons-material';
 
 export default function ChatsSectionLargeSideBar() {
     const [activeTab, setActiveTab] = useState<'all' | 'unread' | 'favourites' | 'groups'>('all');
@@ -22,6 +24,11 @@ export default function ChatsSectionLargeSideBar() {
             <ChatsSideBarContent
                 activeTab={activeTab}
             />
+            <div className='absolute bottom-6 left-6 right-6 z-50 flex justify-end'>
+                <Fab color="success" sx={{backgroundColor: "#25D366"}} aria-label="add">
+                    <Add />
+                </Fab>
+            </div>
         </div>
     )
 }

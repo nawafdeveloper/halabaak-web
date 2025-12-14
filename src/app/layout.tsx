@@ -30,7 +30,7 @@ export default async function RootLayout({
             <main className="flex flex-row items-start h-screen overflow-y-hidden">
               <SmallSideBar />
               <LargeSideBar />
-              <div className="flex flex-1 w-full md:max-w-5xl md:mx-auto px-4">
+              <div className="flex flex-1 w-full md:max-w-5xl md:mx-auto">
                 {children}
               </div>
             </main>
