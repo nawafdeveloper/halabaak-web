@@ -11,7 +11,7 @@ export default function LargeSideBar() {
     const isProfile = pathname.includes('profile');
 
     return (
-        <div className='md:flex hidden flex-col border-r dark:border-neutral-700 border-neutral-300 w-full xxl:max-w-lg md:max-w-md h-full bg-white dark:bg-[#161717]'>
+        <div className='md:flex hidden flex-col border-r dark:border-neutral-700 border-neutral-300 w-full xl:max-w-lg md:max-w-sm h-full bg-white dark:bg-[#161717]'>
             {isChats && (
                 <ChatsSectionLargeSideBar />
             )}

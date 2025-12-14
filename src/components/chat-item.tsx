@@ -7,6 +7,7 @@ import React from 'react'
 import { AttachFileOutlined, DoneAll, ExpandMoreOutlined, Group, ImageOutlined, KeyboardVoiceOutlined, Person, SlowMotionVideoOutlined } from '@mui/icons-material';
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
+import ChatItemMoreButtonMenu from './chat-item-more-button-menu';
 
 type Props = {
     chat_id: string;
@@ -120,22 +121,7 @@ export default function ChatItem({
                                     },
                                 })}
                             />
-                            <IconButton
-                                component="span"
-                                size="small"
-                                className="chat-hover-action"
-                                sx={{
-                                    position: "absolute",
-                                    top: "50%",
-                                    left: "50%",
-                                    transform: "translate(8px, -50%)",
-                                    opacity: 0,
-                                    transition: "all 100ms ease",
-                                    pointerEvents: "none",
-                                }}
-                            >
-                                <ExpandMoreOutlined fontSize="small" />
-                            </IconButton>
+                            <ChatItemMoreButtonMenu />
                         </div>
                     </div>
                 }
