@@ -1,0 +1,42 @@
+"use client";
+
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
+import Image from "next/image";
+
+export default function GlobalLoading() {
+    return (
+        <div className="flex flex-col h-screen w-full relative bg-white dark:bg-[#161717]">
+            <div className="flex flex-col flex-1 h-full w-full justify-center items-center gap-y-6">
+                <Image
+                    src={'/halabaak-logo.svg'}
+                    alt="HalaBaak Corp.©"
+                    width={500}
+                    height={500}
+                    className="w-auto h-6 object-contain"
+                />
+                <Box sx={{ width: "200px" }}>
+                    <LinearProgress
+                        sx={(theme) => ({
+                            height: 3,
+                            borderRadius: 2,
+
+                            backgroundColor:
+                                theme.palette.mode === 'dark'
+                                    ? 'rgba(37, 211, 102, 0.2)'
+                                    : 'rgba(37, 211, 102, 0.15)',
+
+                            '& .MuiLinearProgress-bar': {
+                                backgroundColor: '#25D366',
+                                borderRadius: 2,
+                            },
+                        })}
+                    />
+                </Box>
+            </div>
+            <span className="absolute bottom-0 left-0 right-0 w-full px-4 md:px-0 md:max-w-xl md:mx-auto pb-10 justify-center items-center text-center bg-transparent text-sm text-gray-500">
+                <p>© {new Date().getFullYear()} HalaBaak. All rights reserved. All content and intellectual property belong to HalaBaak. Unauthorized use is prohibited.</p>
+            </span>
+        </div>
+    )
+}
