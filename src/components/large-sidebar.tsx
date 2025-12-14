@@ -2,8 +2,13 @@
 
 import { usePathname } from "next/navigation";
 import ChatsSectionLargeSideBar from "./chats-section-large-sidebar";
+import { ChatItemType } from "@/mocks/fake-types";
 
-export default function LargeSideBar() {
+interface Props {
+    data: ChatItemType[];
+}
+
+export default function LargeSideBar({ data }: Props) {
     const pathname = usePathname();
 
     const isChats = pathname.includes('chats');
@@ -13,7 +18,7 @@ export default function LargeSideBar() {
     return (
         <div className='md:flex hidden flex-col border-r dark:border-neutral-700 border-neutral-300 w-full xl:max-w-lg md:max-w-sm h-full bg-white dark:bg-[#161717]'>
             {isChats && (
-                <ChatsSectionLargeSideBar />
+                <ChatsSectionLargeSideBar data={data}/>
             )}
         </div>
     )

@@ -7,6 +7,7 @@ import Image from "next/image";
 import ChatsMoreButtonMenu from "./chats-more-button-menu";
 
 export default function ChatsHeaderLargeSideBar() {
+    const handleAddNewChatForAnimation = () => {};
     return (
         <div className="flex flex-row items-center justify-between">
             <Image
@@ -38,6 +39,7 @@ export default function ChatsHeaderLargeSideBar() {
                                         ? "#333333"
                                         : "#e5e5e5",
                             },
+                            display: {xs: "none", sm: "flex"}
                         })}
                     >
                         <AddCommentOutlined

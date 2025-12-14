@@ -66,6 +66,6 @@ body {
   }
 
   * {
-    scrollbar-color: #555 var(--background);
+    scrollbar-color: #555 #00000000;
   }
 }

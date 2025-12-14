@@ -11,10 +11,10 @@ import ChatItemMoreButtonMenu from './chat-item-more-button-menu';
 
 type Props = {
     chat_id: string;
-    chat_type: "single" | "group";
-    avatar: string | null;
+    chat_type: 'single' | 'group';
+    avatar: string;
     last_message_context: string;
-    last_message_media: "image" | "voice" | "video" | "file" | null;
+    last_message_media: string | null;
     last_message_sender_is_me: boolean;
     last_message_sender_nickname: string;
     is_unreaded_chat: boolean;

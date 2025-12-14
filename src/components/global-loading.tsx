@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function GlobalLoading() {
     return (
-        <div className="flex flex-col h-screen w-full relative bg-white dark:bg-[#161717]">
+        <div className="flex flex-col h-screen max-h-screen min-h-screen w-full relative bg-white dark:bg-[#161717]">
             <div className="flex flex-col flex-1 h-full w-full justify-center items-center gap-y-6">
                 <Image
                     src={'/halabaak-logo.svg'}

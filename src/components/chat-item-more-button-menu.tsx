@@ -95,7 +95,7 @@ export default function ChatItemMoreButtonMenu() {
                             sx: (theme) => ({
                                 color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
                                 fontWeight: 500,
-                                fontSize: "17px",
+                                fontSize: "15px",
                             }),
                         }}
                     >Archive chat</ListItemText>
@@ -124,7 +124,7 @@ export default function ChatItemMoreButtonMenu() {
                             sx: (theme) => ({
                                 color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
                                 fontWeight: 500,
-                                fontSize: "17px",
+                                fontSize: "15px",
                             }),
                         }}
                     >Mute notifications</ListItemText>
@@ -153,7 +153,7 @@ export default function ChatItemMoreButtonMenu() {
                             sx: (theme) => ({
                                 color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
                                 fontWeight: 500,
-                                fontSize: "17px",
+                                fontSize: "15px",
                             }),
                         }}
                     >Pin chats</ListItemText>
@@ -182,7 +182,7 @@ export default function ChatItemMoreButtonMenu() {
                             sx: (theme) => ({
                                 color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
                                 fontWeight: 500,
-                                fontSize: "17px",
+                                fontSize: "15px",
                             }),
                         }}
                     >Mark as read</ListItemText>
@@ -211,7 +211,7 @@ export default function ChatItemMoreButtonMenu() {
                             sx: (theme) => ({
                                 color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
                                 fontWeight: 500,
-                                fontSize: "17px",
+                                fontSize: "15px",
                             }),
                         }}
                     >Add to favourites</ListItemText>
@@ -241,7 +241,7 @@ export default function ChatItemMoreButtonMenu() {
                             sx: (theme) => ({
                                 color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
                                 fontWeight: 500,
-                                fontSize: "17px",
+                                fontSize: "15px",
                             }),
                         }}
                     >Exit group</ListItemText>

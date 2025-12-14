@@ -25,7 +25,7 @@ export default function SmallSideBar() {
         .reduce((acc, curr) => acc + curr, 0);
 
     return (
-        <div className='md:flex hidden flex-col items-start justify-between h-screen overflow-y-hidden p-3 dark:bg-[#1d1f1f] bg-[#f7f5f3] border-r dark:border-neutral-700 border-neutral-300'>
+        <div className='md:flex hidden flex-col items-start justify-between md:h-screen md:max-h-screen md:min-h-screen overflow-y-hidden p-3 dark:bg-[#1d1f1f] bg-[#f7f5f3] border-r dark:border-neutral-700 border-neutral-300'>
             <div className="flex flex-col gap-y-3">
                 <Tooltip
                     title="Chats"
