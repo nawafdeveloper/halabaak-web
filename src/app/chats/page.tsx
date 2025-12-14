@@ -3,7 +3,7 @@ import EmptyStartChating from "@/components/empty-start-chating";
 
 export default async function ChatsPage() {
     return (
-        <div className="w-full h-screen flex">
+        <div className="w-full h-screen">
             <div className="flex md:hidden">
                 <ChatsSectionLargeSideBar />
             </div>

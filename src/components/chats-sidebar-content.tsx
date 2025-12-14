@@ -11,7 +11,7 @@ type Props = {
 
 export default function ChatsSideBarContent({ activeTab }: Props) {
     return (
-        <List sx={{ bgcolor: 'transparent', overflowY: "scroll", height: "100%", paddingBottom: '24px', paddingX: { xs: 0, lg: '20px' } }}>
+        <List sx={{ bgcolor: 'transparent', overflowY: "scroll", height: "100%", paddingBottom: '24px', paddingX: '20px' }}>
             <TransitionGroup>
                 {mockChatsItems.map((item) => (
                     <ChatItem

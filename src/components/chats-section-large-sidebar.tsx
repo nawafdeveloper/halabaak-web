@@ -12,7 +12,7 @@ export default function ChatsSectionLargeSideBar() {
     const [activeTab, setActiveTab] = useState<'all' | 'unread' | 'favourites' | 'groups'>('all');
 
     return (
-        <div className='flex flex-col space-y-4 h-screen'>
+        <div className='flex flex-col space-y-4 h-screen w-full'>
             <div className='px-5 pt-5 flex flex-col space-y-4'>
                 <ChatsHeaderLargeSideBar />
                 <ChatsSearchHeaderLargeSidebar
