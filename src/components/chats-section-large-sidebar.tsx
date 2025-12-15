@@ -11,23 +11,24 @@ import { ChatItemType } from '@/mocks/fake-types';
 
 interface Props {
     data: ChatItemType[];
+    setActiveSideBar: (nav: 'main-chat' | 'search-chat' | 'create-chat' | 'main-setting' | 'main-profile' | 'main-archive') => void;
 }
 
-export default function ChatsSectionLargeSideBar({ data }: Props) {
-    const [activeTab, setActiveTab] = useState<'all' | 'unread' | 'favourites' | 'groups'>('all');
+export default function ChatsSectionLargeSideBar({ data, setActiveSideBar }: Props) {
+    const [activeChatTab, setActiveChatTab] = useState<'all' | 'unread' | 'favourites' | 'groups'>('all');
 
     return (
-        <div className='flex flex-col space-y-4 h-screen max-h-screen min-h-screen w-full'>
+        <div className='flex flex-col space-y-4 h-screen max-h-screen min-h-screen w-full border-r dark:border-neutral-700 border-neutral-300'>
             <div className='px-5 pt-5 flex flex-col space-y-4'>
-                <ChatsHeaderLargeSideBar />
+                <ChatsHeaderLargeSideBar setActiveSideBar={setActiveSideBar} />
                 <ChatsSearchHeaderLargeSidebar
-                    activeTab={activeTab}
-                    setActiveTab={setActiveTab}
+                    activeChatTab={activeChatTab}
+                    setActiveChatTab={setActiveChatTab}
                 />
                 <NotificationServicesPermissionAlert />
             </div>
             <ChatsSideBarContent
-                activeTab={activeTab}
+                activeChatTab={activeChatTab}
                 data={data}
             />
             <div className='absolute bottom-6 left-6 right-6 z-50 flex md:hidden justify-end'>

@@ -1,22 +1,29 @@
 "use client";
 
-import { ArchiveOutlined, ChatOutlined, CheckBoxOutlined, ExpandMoreOutlined, FavoriteBorderOutlined, GroupAddOutlined, LogoutOutlined, MarkChatReadOutlined, NotificationsOffOutlined, PushPinOutlined, StarBorderOutlined } from '@mui/icons-material';
+import { ArchiveOutlined, BlockOutlined, DeleteForeverOutlined, ExpandMoreOutlined, FavoriteBorderOutlined, LogoutOutlined, MarkChatReadOutlined, NotificationsOffOutlined, PushPinOutlined, StarBorderOutlined } from '@mui/icons-material';
 import { Divider } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
 import React from 'react'
 
-export default function ChatItemMoreButtonMenu() {
+interface Props {
+    chat_type: 'group' | 'single';
+}
+
+export default function ChatItemMoreButtonMenu({ chat_type }: Props) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        event.stopPropagation();
+        event.preventDefault();
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
+    const handleClose = (event: React.MouseEvent<HTMLElement>) => {
+        event.stopPropagation();
+        event.preventDefault();
         setAnchorEl(null);
     };
 
@@ -30,7 +37,7 @@ export default function ChatItemMoreButtonMenu() {
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
+                onClick={(e) => handleClick(e)}
                 sx={(theme) => ({
                     position: "absolute",
                     top: "50%",
@@ -156,7 +163,7 @@ export default function ChatItemMoreButtonMenu() {
                                 fontSize: "15px",
                             }),
                         }}
-                    >Pin chats</ListItemText>
+                    >Pin chat</ListItemText>
                 </MenuItem>
                 <MenuItem
                     onClick={handleClose}
@@ -217,35 +224,104 @@ export default function ChatItemMoreButtonMenu() {
                     >Add to favourites</ListItemText>
                 </MenuItem>
                 <Divider />
-                <MenuItem
-                    onClick={handleClose}
-                    sx={(theme) => ({
-                        "&:hover": {
-                            backgroundColor: theme.palette.mode === "dark" ? "#333" : "#eee",
-                        },
-                        borderRadius: 2,
-                        paddingY: 1,
-                        paddingX: 1
-                    })}
-                >
-                    <ListItemIcon>
-                        <LogoutOutlined
-                            fontSize="medium"
+                {chat_type === 'group' ? (
+                    <MenuItem
+                        onClick={handleClose}
+                        sx={(theme) => ({
+                            "&:hover": {
+                                backgroundColor: theme.palette.mode === "dark" ? "#333" : "#eee",
+                            },
+                            borderRadius: 2,
+                            paddingY: 1,
+                            paddingX: 1
+                        })}
+                    >
+                        <ListItemIcon>
+                            <LogoutOutlined
+                                fontSize="medium"
+                                sx={(theme) => ({
+                                    color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261"
+                                })}
+                            />
+                        </ListItemIcon>
+                        <ListItemText
+                            primaryTypographyProps={{
+                                sx: (theme) => ({
+                                    color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                                    fontWeight: 500,
+                                    fontSize: "15px",
+                                }),
+                            }}
+                        >
+                            Exit group
+                        </ListItemText>
+                    </MenuItem>
+                ) : (
+                    <div>
+                        <MenuItem
+                            onClick={handleClose}
                             sx={(theme) => ({
-                                color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261"
+                                "&:hover": {
+                                    backgroundColor: theme.palette.mode === "dark" ? "#333" : "#eee",
+                                },
+                                borderRadius: 2,
+                                paddingY: 1,
+                                paddingX: 1
                             })}
-                        />
-                    </ListItemIcon>
-                    <ListItemText
-                        primaryTypographyProps={{
-                            sx: (theme) => ({
-                                color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
-                                fontWeight: 500,
-                                fontSize: "15px",
-                            }),
-                        }}
-                    >Exit group</ListItemText>
-                </MenuItem>
+                        >
+                            <ListItemIcon>
+                                <BlockOutlined
+                                    fontSize="medium"
+                                    sx={(theme) => ({
+                                        color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261"
+                                    })}
+                                />
+                            </ListItemIcon>
+                            <ListItemText
+                                primaryTypographyProps={{
+                                    sx: (theme) => ({
+                                        color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                                        fontWeight: 500,
+                                        fontSize: "15px",
+                                    }),
+                                }}
+                            >
+                                Block
+                            </ListItemText>
+                        </MenuItem>
+                        <MenuItem
+                            onClick={handleClose}
+                            sx={(theme) => ({
+                                "&:hover": {
+                                    backgroundColor: theme.palette.mode === "dark" ? "#333" : "#eee",
+                                },
+                                borderRadius: 2,
+                                paddingY: 1,
+                                paddingX: 1
+                            })}
+                        >
+                            <ListItemIcon>
+                                <DeleteForeverOutlined
+                                    fontSize="medium"
+                                    sx={(theme) => ({
+                                        color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261"
+                                    })}
+                                />
+                            </ListItemIcon>
+                            <ListItemText
+                                primaryTypographyProps={{
+                                    sx: (theme) => ({
+                                        color: theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                                        fontWeight: 500,
+                                        fontSize: "15px",
+                                    }),
+                                }}
+                            >
+                                Delete chat
+                            </ListItemText>
+                        </MenuItem>
+                    </div>
+                )}
             </Menu>
         </div>
     )

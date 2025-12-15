@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 import GlobalLoading from './global-loading';
 import { motion } from "framer-motion";
+import { MuiSystemThemeProvider } from '@/context/theme';
+import AuthFlowSection from './auth-flow-section';
 
-export default function MainClientUIWrapper({ children }: { children: React.ReactNode }) {
+export default function MainClientUIAuthWrapper({ country }: { country: string | null }) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -26,7 +28,11 @@ export default function MainClientUIWrapper({ children }: { children: React.Reac
             }}
             style={{ height: "100%" }}
         >
-            {children}
+            <MuiSystemThemeProvider>
+                <main className="w-full h-screen overflow-hidden">
+                    <AuthFlowSection country={country} />
+                </main>
+            </MuiSystemThemeProvider>
         </motion.div>
     );
 }

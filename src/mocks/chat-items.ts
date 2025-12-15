@@ -14,6 +14,8 @@ const mockChats = [
         is_pinned_chat: true,
         is_favourite_chat: true,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_002",
@@ -30,6 +32,8 @@ const mockChats = [
         is_pinned_chat: true,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_003",
@@ -46,6 +50,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: true,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_004",
@@ -62,6 +68,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_005",
@@ -78,6 +86,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_006",
@@ -94,6 +104,8 @@ const mockChats = [
         is_pinned_chat: true,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_007",
@@ -110,6 +122,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_008",
@@ -126,6 +140,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_009",
@@ -142,6 +158,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: true,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_010",
@@ -158,6 +176,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_011",
@@ -174,6 +194,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_012",
@@ -190,6 +212,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_013",
@@ -206,6 +230,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_014",
@@ -222,6 +248,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: true,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_015",
@@ -238,6 +266,8 @@ const mockChats = [
         is_pinned_chat: true,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_016",
@@ -254,6 +284,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_017",
@@ -270,6 +302,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: true,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_018",
@@ -286,6 +320,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_019",
@@ -302,6 +338,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_020",
@@ -318,6 +356,8 @@ const mockChats = [
         is_pinned_chat: true,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_021",
@@ -334,6 +374,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_022",
@@ -350,6 +392,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_023",
@@ -366,6 +410,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_024",
@@ -382,6 +428,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_025",
@@ -398,6 +446,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: true,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_026",
@@ -414,6 +464,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: true,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_027",
@@ -430,6 +482,9 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: true,
+
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_028",
@@ -446,6 +501,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_029",
@@ -462,6 +519,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
     {
         chat_id: "chat_030",
@@ -478,6 +537,8 @@ const mockChats = [
         is_pinned_chat: false,
         is_favourite_chat: false,
         is_blocked_chat: false,
+        created_at: new Date('2022-03-12'),
+        updated_at: new Date('2025-12-10')
     },
 ];
 

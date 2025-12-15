@@ -1,50 +1,24 @@
-import Button from '@mui/material/Button';
+"use client";
+
 import Avatar from '@mui/material/Avatar';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react'
-import { AttachFileOutlined, DoneAll, ExpandMoreOutlined, Group, ImageOutlined, KeyboardVoiceOutlined, Person, SlowMotionVideoOutlined } from '@mui/icons-material';
+import { AttachFileOutlined, DoneAll, Group, ImageOutlined, KeyboardVoiceOutlined, Person, SlowMotionVideoOutlined } from '@mui/icons-material';
 import Badge from '@mui/material/Badge';
-import IconButton from '@mui/material/IconButton';
 import ChatItemMoreButtonMenu from './chat-item-more-button-menu';
+import { ChatItemType } from '@/types/chats.type';
+import { formatChatDate } from '@/lib/format-chat-date';
+import ListItemButton from '@mui/material/ListItemButton';
 
 type Props = {
-    chat_id: string;
-    chat_type: 'single' | 'group';
-    avatar: string;
-    last_message_context: string;
-    last_message_media: string | null;
-    last_message_sender_is_me: boolean;
-    last_message_sender_nickname: string;
-    is_unreaded_chat: boolean;
-    unreaded_messages_length: number;
-    is_archived_chat: boolean;
-    is_muted_chat_notifications: boolean;
-    is_pinned_chat: boolean;
-    is_favourite_chat: boolean;
-    is_blocked_chat: boolean;
+    chat_item: ChatItemType;
 }
 
-export default function ChatItem({
-    chat_id,
-    chat_type,
-    avatar,
-    last_message_context,
-    last_message_media,
-    last_message_sender_is_me,
-    last_message_sender_nickname,
-    is_unreaded_chat,
-    unreaded_messages_length,
-    is_archived_chat,
-    is_muted_chat_notifications,
-    is_pinned_chat,
-    is_favourite_chat,
-    is_blocked_chat,
-}: Props) {
+export default function ChatItem({ chat_item }: Props) {
     return (
-        <Button
-            variant="contained"
+        <ListItemButton
             sx={(theme) => ({
                 width: "100%",
                 borderRadius: 3,
@@ -90,12 +64,12 @@ export default function ChatItem({
                         }}
                     >
                         <span
-                            className={`text-[13px] font-light ${is_unreaded_chat
+                            className={`text-[13px] font-light ${chat_item.is_unreaded_chat
                                 ? "text-[#25D366]"
                                 : "dark:text-[#A5A5A5] text-[#636261]"
                                 }`}
                         >
-                            9:30 PM
+                            {formatChatDate(chat_item.updated_at)}
                         </span>
                         <div
                             className="badge-slot"
@@ -106,7 +80,7 @@ export default function ChatItem({
                             }}
                         >
                             <Badge
-                                badgeContent={unreaded_messages_length}
+                                badgeContent={chat_item.unreaded_messages_length}
                                 color="success"
                                 className="chat-badge"
                                 sx={(theme) => ({
@@ -121,7 +95,7 @@ export default function ChatItem({
                                     },
                                 })}
                             />
-                            <ChatItemMoreButtonMenu />
+                            <ChatItemMoreButtonMenu chat_type={chat_item.chat_type} />
                         </div>
                     </div>
                 }
@@ -134,19 +108,19 @@ export default function ChatItem({
                             backgroundColor: theme.palette.mode === "dark" ? "#103529" : "#D9FDD3",
                             color: theme.palette.mode === "dark" ? "#25D366" : "#1F4E2E",
                         })}
-                        src={avatar || ""}
+                        src={chat_item.avatar || ""}
                     >
-                        {chat_type === 'group' ? <Group /> : <Person />}
+                        {chat_item.chat_type === 'group' ? <Group /> : <Person />}
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                    primary={last_message_sender_nickname}
+                    primary={chat_item.last_message_sender_nickname}
                     sx={{
                         transition: "max-width 100ms ease",
                         maxWidth: "75%",
                         "& .MuiListItemText-secondary": {
                             color: (theme) =>
-                                is_unreaded_chat ? theme.palette.mode === "dark" ? "white" : "black" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                                chat_item.is_unreaded_chat ? theme.palette.mode === "dark" ? "white" : "black" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
                         },
                         overflow: "hidden",
                         whiteSpace: "nowrap",
@@ -155,31 +129,31 @@ export default function ChatItem({
                     }}
                     secondary={
                         <React.Fragment>
-                            {chat_type === 'group' && last_message_sender_is_me && <DoneAll fontSize="small" />}
-                            {chat_type === 'group' && !last_message_sender_is_me && `${last_message_sender_nickname}:`}
-                            {last_message_media && (
+                            {chat_item.chat_type === 'group' && chat_item.last_message_sender_is_me && <DoneAll fontSize="small" />}
+                            {chat_item.chat_type === 'group' && !chat_item.last_message_sender_is_me && `${chat_item.last_message_sender_nickname}:`}
+                            {chat_item.last_message_media && (
                                 <>
-                                    {last_message_media === 'image' && (
+                                    {chat_item.last_message_media === 'image' && (
                                         <ImageOutlined fontSize="small" />
                                     )}
-                                    {last_message_media === 'video' && (
+                                    {chat_item.last_message_media === 'video' && (
                                         <SlowMotionVideoOutlined fontSize="small" />
                                     )}
-                                    {last_message_media === 'voice' && (
+                                    {chat_item.last_message_media === 'voice' && (
                                         <KeyboardVoiceOutlined fontSize="small" />
                                     )}
-                                    {last_message_media === 'file' && (
+                                    {chat_item.last_message_media === 'file' && (
                                         <AttachFileOutlined fontSize="small" />
                                     )}
                                 </>
                             )}
                             {'  '}
-                            {last_message_media ?
-                                last_message_media === 'image' ? 'Image' :
-                                    last_message_media === 'video' ? 'Video' :
-                                        last_message_media === 'voice' ? 'Voice' :
+                            {chat_item.last_message_media ?
+                                chat_item.last_message_media === 'image' ? 'Image' :
+                                    chat_item.last_message_media === 'video' ? 'Video' :
+                                        chat_item.last_message_media === 'voice' ? 'Voice' :
                                             'File' :
-                                last_message_context
+                                chat_item.last_message_context
                             }
                         </React.Fragment>
                     }
@@ -193,7 +167,7 @@ export default function ChatItem({
                             maxWidth: "100%",
                             transition: "max-width 100ms ease",
                             color: (theme) =>
-                                is_unreaded_chat
+                                chat_item.is_unreaded_chat
                                     ? theme.palette.mode === "dark"
                                         ? "white"
                                         : "black"
@@ -204,6 +178,6 @@ export default function ChatItem({
                     }}
                 />
             </ListItem>
-        </Button>
+        </ListItemButton>
     )
 }

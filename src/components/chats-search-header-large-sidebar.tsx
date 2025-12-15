@@ -8,11 +8,11 @@ import TextField from '@mui/material/TextField';
 import { useRef, useState } from 'react';
 
 interface Props {
-    activeTab: "all" | "unread" | "favourites" | "groups";
-    setActiveTab: (value: "all" | "unread" | "favourites" | "groups") => void;
+    activeChatTab: "all" | "unread" | "favourites" | "groups";
+    setActiveChatTab: (value: "all" | "unread" | "favourites" | "groups") => void;
 }
 
-export default function ChatsSearchHeaderLargeSidebar({activeTab, setActiveTab}: Props) {
+export default function ChatsSearchHeaderLargeSidebar({activeChatTab, setActiveChatTab}: Props) {
     const [value, setValue] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -21,8 +21,8 @@ export default function ChatsSearchHeaderLargeSidebar({activeTab, setActiveTab}:
         inputRef.current?.blur();
     };
 
-    const handleSelectActiveTab = (tab: 'all' | 'unread' | 'favourites' | 'groups') => {
-        setActiveTab(tab);
+    const handleSelectActiveChatTab = (tab: 'all' | 'unread' | 'favourites' | 'groups') => {
+        setActiveChatTab(tab);
     };
 
     return (
@@ -76,64 +76,64 @@ export default function ChatsSearchHeaderLargeSidebar({activeTab, setActiveTab}:
             />
             <div className='flex flex-row items-center gap-x-3'>
                 <Button
-                    onClick={() => handleSelectActiveTab('all')}
+                    onClick={() => handleSelectActiveChatTab('all')}
                     variant="outlined"
                     sx={(theme) => ({
                         borderRadius: 99,
-                        borderColor: activeTab === 'all' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
-                        color: activeTab === 'all' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
-                        backgroundColor: activeTab === 'all' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
+                        borderColor: activeChatTab === 'all' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                        color: activeChatTab === 'all' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                        backgroundColor: activeChatTab === 'all' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
                         textTransform: "none",
                         "&:hover": {
-                            backgroundColor: activeTab === 'all' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                            backgroundColor: activeChatTab === 'all' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
                         },
                     })}
                 >
                     All
                 </Button>
                 <Button
-                    onClick={() => handleSelectActiveTab('unread')}
+                    onClick={() => handleSelectActiveChatTab('unread')}
                     variant="outlined"
                     sx={(theme) => ({
                         borderRadius: 99,
-                        borderColor: activeTab === 'unread' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
-                        color: activeTab === 'unread' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
-                        backgroundColor: activeTab === 'unread' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
+                        borderColor: activeChatTab === 'unread' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                        color: activeChatTab === 'unread' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                        backgroundColor: activeChatTab === 'unread' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
                         textTransform: "none",
                         "&:hover": {
-                            backgroundColor: activeTab === 'unread' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                            backgroundColor: activeChatTab === 'unread' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
                         },
                     })}
                 >
                     Unread
                 </Button>
                 <Button
-                    onClick={() => handleSelectActiveTab('favourites')}
+                    onClick={() => handleSelectActiveChatTab('favourites')}
                     variant="outlined"
                     sx={(theme) => ({
                         borderRadius: 99,
-                        borderColor: activeTab === 'favourites' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
-                        color: activeTab === 'favourites' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
-                        backgroundColor: activeTab === 'favourites' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
+                        borderColor: activeChatTab === 'favourites' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                        color: activeChatTab === 'favourites' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                        backgroundColor: activeChatTab === 'favourites' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
                         textTransform: "none",
                         "&:hover": {
-                            backgroundColor: activeTab === 'favourites' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                            backgroundColor: activeChatTab === 'favourites' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
                         },
                     })}
                 >
                     Favourites
                 </Button>
                 <Button
-                    onClick={() => handleSelectActiveTab('groups')}
+                    onClick={() => handleSelectActiveChatTab('groups')}
                     variant="outlined"
                     sx={(theme) => ({
                         borderRadius: 99,
-                        borderColor: activeTab === 'groups' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
-                        color: activeTab === 'groups' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
-                        backgroundColor: activeTab === 'groups' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
+                        borderColor: activeChatTab === 'groups' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                        color: activeChatTab === 'groups' ? theme.palette.mode === "dark" ? "#139443" : "#25D366" : theme.palette.mode === "dark" ? "#A5A5A5" : "#636261",
+                        backgroundColor: activeChatTab === 'groups' ? theme.palette.mode === "dark" ? "#103529" : "#D9FDD3" : "transparent",
                         textTransform: "none",
                         "&:hover": {
-                            backgroundColor: activeTab === 'groups' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
+                            backgroundColor: activeChatTab === 'groups' ? theme.palette.mode === "dark" ? "#18503E" : "#C1FFB7" : theme.palette.mode === "dark" ? "#333" : "#e5e5e5",
                         },
                     })}
                 >
