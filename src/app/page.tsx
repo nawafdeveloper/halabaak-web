@@ -1,5 +1,6 @@
 "use client"
 
+import ChatRoomSection from "@/components/chat-room-section";
 import ChatsSectionLargeSideBar from "@/components/chats-section-large-sidebar";
 import EmptyStartChating from "@/components/empty-start-chating";
 import mockChats from "@/mocks/chat-items";
@@ -13,7 +14,8 @@ export default function AppPage() {
         <ChatsSectionLargeSideBar data={mockChats} setActiveSideBar={setActiveSideBar} />
       </div>
       <div className="hidden md:flex w-full h-full">
-        <EmptyStartChating />
+        {/* <EmptyStartChating /> */}
+        <ChatRoomSection />
       </div>
     </div>
   );
