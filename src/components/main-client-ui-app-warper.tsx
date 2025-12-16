@@ -43,7 +43,7 @@ export default function MainClientUIAppWrapper({ children }: { children: React.R
                         activeSideBar={activeSideBar}
                         setActiveSideBar={setActiveSideBar}
                     />
-                    <div className="flex flex-1 w-full md:max-w-5xl md:mx-auto">
+                    <div className="flex flex-1 w-full">
                         {children}
                     </div>
                 </main>

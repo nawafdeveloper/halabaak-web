@@ -1,7 +1,6 @@
 "use client";
 
-import { emojis } from "@/lib/emojis";
-import { CloseOutlined, InsertEmoticonOutlined, SearchOutlined } from "@mui/icons-material";
+import { AccessTimeOutlined, CloseOutlined, DirectionsCarOutlined, DownhillSkiingOutlined, EmojiFoodBeverageOutlined, EmojiNatureOutlined, EmojiObjectsOutlined, EmojiSymbolsOutlined, FlagOutlined, InsertEmoticonOutlined, SearchOutlined, SportsBaseballOutlined } from "@mui/icons-material";
 import {
     Box,
     Grow,
@@ -13,12 +12,54 @@ import {
 } from "@mui/material";
 import Popper from "@mui/material/Popper";
 import React, { useRef, useState } from "react";
+import rawEmojis from "unicode-emoji-json";
 
-export default function ChatRoomInputEmojiButton() {
+interface EmojiType {
+    emoji: string;
+    name: string;
+    group: string;
+}
+
+interface UnicodeEmojiMeta {
+    name: string;
+    group: string;
+    subgroup?: string;
+    version?: number;
+}
+
+interface Props {
+    messageInput: string;
+    setMessageInput: (value: string) => void;
+}
+
+export default function ChatRoomInputEmojiButton({ setMessageInput, messageInput }: Props) {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const [tab, setTab] = useState(0);
     const [value, setValue] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const emojis = rawEmojis as Record<string, UnicodeEmojiMeta>;
+
+    const emojiArray: EmojiType[] = Object.entries(emojis).map(
+        ([emoji, meta]) => ({
+            emoji,
+            name: meta.name,
+            group: meta.group,
+        })
+    );
+
+    const categories = Array.from(
+        new Set(emojiArray.map(e => e.group))
+    );
+
+    const emojisByCategory: Record<string, EmojiType[]> = {};
+    categories.forEach(cat => {
+        emojisByCategory[cat] = emojiArray.filter(e => e.group === cat);
+    });
+
+    const filteredEmojis = (emojisByCategory[categories[tab]] || []).filter(e =>
+        e.name.toLowerCase().includes(value.toLowerCase())
+    );
 
     const handleClear = () => {
         setValue("");
@@ -50,102 +91,147 @@ export default function ChatRoomInputEmojiButton() {
                                 borderRadius: 4,
                                 mb: 2,
                                 boxShadow: "0px 8px 30px rgba(0,0,0,0.15)",
-                                overflow: "hidden",
+                                overflow: "hidden"
                             })}
                         >
                             <Tabs
                                 value={tab}
                                 onChange={(_, v) => setTab(v)}
-                                variant="standard"
+                                variant="scrollable"
+                                scrollButtons="auto"
                                 TabIndicatorProps={{ style: { display: "none" } }}
-                                sx={{
-                                    minHeight: 56,
-                                    width: 600
-                                }}
+                                sx={{ minHeight: 56, width: 600 }}
                             >
-                                {emojis.map((item, index) => (
-                                    <Tab
-                                        key={item.id}
-                                        icon={
-                                            <item.icon
-                                                sx={(theme) => ({
-                                                    color:
-                                                        tab === index
-                                                            ? "#25D366"
-                                                            : theme.palette.text.secondary,
-                                                })}
-                                            />
-                                        }
-                                        sx={(theme) => ({
-                                            minHeight: 56,
-                                            width: 66.6,
-                                            minWidth: "auto",
-                                            borderBottom:
-                                                tab === index
-                                                    ? "2px solid #25D366"
-                                                    : "2px solid transparent",
-                                            transition: "all 0.2s ease",
-                                            "& svg": {
-                                                fontSize: 22,
-                                            },
-                                            "&:hover": {
-                                                backgroundColor:
-                                                    theme.palette.mode === "dark"
-                                                        ? "rgba(255,255,255,0.04)"
-                                                        : "rgba(0,0,0,0.04)",
-                                            }
-                                        })}
-                                    />
-                                ))}
+                                {categories.map((item, index) => {
+                                    let IconComponent;
+                                    switch (item) {
+                                        case "Recent":
+                                            IconComponent = AccessTimeOutlined;
+                                            break;
+                                        case "Smileys & Emotion":
+                                            IconComponent = InsertEmoticonOutlined;
+                                            break;
+                                        case "People & Body":
+                                            IconComponent = DownhillSkiingOutlined;
+                                            break;
+                                        case "Food & Drink":
+                                            IconComponent = EmojiFoodBeverageOutlined;
+                                            break;
+                                        case "Animals & Nature":
+                                            IconComponent = EmojiNatureOutlined;
+                                            break;
+                                        case "Travel & Places":
+                                            IconComponent = DirectionsCarOutlined;
+                                            break;
+                                        case "Activities":
+                                            IconComponent = SportsBaseballOutlined;
+                                            break;
+                                        case "Objects":
+                                            IconComponent = EmojiObjectsOutlined;
+                                            break;
+                                        case "Symbols":
+                                            IconComponent = EmojiSymbolsOutlined;
+                                            break;
+                                        case "Flags":
+                                            IconComponent = FlagOutlined;
+                                            break;
+                                        default:
+                                            IconComponent = InsertEmoticonOutlined;
+                                    }
+
+                                    return (
+                                        <Tab
+                                            key={item}
+                                            icon={<IconComponent sx={{ color: tab === index ? "#25D366" : "gray" }} />}
+                                            sx={{
+                                                minHeight: 56,
+                                                minWidth: 60,
+                                                borderBottom: tab === index ? "2px solid #25D366" : "2px solid transparent"
+                                            }}
+                                        />
+                                    );
+                                })}
                             </Tabs>
-                            <Box sx={{ flex: 1, p: 2 }}>
-                                <TextField
-                                    hiddenLabel
-                                    id="filled-search-bar"
-                                    variant="filled"
-                                    fullWidth
-                                    size="small"
-                                    placeholder="Search emoji"
-                                    value={value}
-                                    onChange={(e) => setValue(e.target.value)}
-                                    inputRef={inputRef}
-                                    sx={(theme) => ({
-                                        "& .MuiFilledInput-root": {
-                                            borderRadius: 8,
-                                            "&.Mui-focused": {
-                                                outline: "2px solid #25D366",
-                                                backgroundColor: theme.palette.mode === "dark" ? "rgba(28,30,33,0)" : "#ffffff",
+                            <Box sx={{ flex: 1, height: "100%" }}>
+                                <div className="p-4">
+                                    <TextField
+                                        hiddenLabel
+                                        id="filled-search-bar"
+                                        variant="filled"
+                                        fullWidth
+                                        size="small"
+                                        placeholder="Search emoji"
+                                        value={value}
+                                        onChange={(e) => setValue(e.target.value)}
+                                        inputRef={inputRef}
+                                        sx={(theme) => ({
+                                            "& .MuiFilledInput-root": {
+                                                borderRadius: 8,
+                                                "&.Mui-focused": {
+                                                    outline: "2px solid #25D366",
+                                                    backgroundColor: theme.palette.mode === "dark" ? "rgba(28,30,33,0)" : "#ffffff",
+                                                },
                                             },
-                                        },
-                                    })}
-                                    InputProps={{
-                                        disableUnderline: true,
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <SearchOutlined
-                                                    sx={{
-                                                        color: (theme) => (theme.palette.mode === "dark" ? "#A5A5A5" : "#636261"),
-                                                        width: 20,
-                                                        height: 20,
-                                                    }}
-                                                />
-                                            </InputAdornment>
-                                        ),
-                                        endAdornment: value ? (
-                                            <InputAdornment position="end">
-                                                <IconButton onClick={handleClear} size="small">
-                                                    <CloseOutlined
+                                        })}
+                                        InputProps={{
+                                            disableUnderline: true,
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <SearchOutlined
                                                         sx={{
                                                             color: (theme) => (theme.palette.mode === "dark" ? "#A5A5A5" : "#636261"),
-                                                            width: 18,
-                                                            height: 18,
+                                                            width: 20,
+                                                            height: 20,
                                                         }}
                                                     />
-                                                </IconButton>
-                                            </InputAdornment>
-                                        ) : null,
+                                                </InputAdornment>
+                                            ),
+                                            endAdornment: value ? (
+                                                <InputAdornment position="end">
+                                                    <IconButton onClick={handleClear} size="small">
+                                                        <CloseOutlined
+                                                            sx={{
+                                                                color: (theme) => (theme.palette.mode === "dark" ? "#A5A5A5" : "#636261"),
+                                                                width: 18,
+                                                                height: 18,
+                                                            }}
+                                                        />
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ) : null,
+                                        }}
+                                    />
+                                </div>
+                                <Box
+                                    sx={{
+                                        display: "grid",
+                                        gridTemplateColumns: "repeat(13, 40px)",
+                                        gap: "4px",
+                                        overflowY: "auto",
+                                        overflowX: "hidden",
+                                        height: "73%",
+                                        paddingX: 2,
                                     }}
-                                />
+                                >
+                                    {categories[tab] === "Recent" ? (
+                                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+                                            {/* No emojis yet */}
+                                        </Box>
+                                    ) : (
+                                        filteredEmojis.map((e, index) => (
+                                            <IconButton
+                                                key={index}
+                                                sx={{ width: 40, height: 40, p: 0, fontSize: "32px" }}
+                                                onClick={() => {
+                                                    // append emoji to existing chat input
+                                                    setMessageInput(messageInput + e.emoji);
+                                                }}
+                                            >
+                                                {e.emoji}
+                                            </IconButton>
+                                        ))
+                                    )}
+                                </Box>
                             </Box>
                         </Box>
                     </Grow>

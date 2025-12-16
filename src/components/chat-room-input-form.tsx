@@ -1,69 +1,130 @@
 "use client";
 
-import { AddOutlined, MicNoneOutlined } from '@mui/icons-material';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField'
-import React, { useRef, useState } from 'react'
+import { DeleteOutlined, Mic, MicNoneOutlined, Pause, PlayArrow, Send } from '@mui/icons-material';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
+import React, { useRef, useState } from 'react';
 import ChatRoomInputAttachButton from './chat-room-input-attach-button';
 import ChatRoomInputEmojiButton from './chat-room-input-emoji-button';
+import RecordTimer from './record-timer';
+import { useVoiceVisualizer, VoiceVisualizer } from "react-voice-visualizer";
 
 export default function ChatRoomInputForm() {
     const [value, setValue] = useState("");
+    const [micHover, setMicHover] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
+    const recorderControls = useVoiceVisualizer();
+    const {
+        startRecording,
+        stopRecording,
+        togglePauseResume,
+        isPausedRecording,
+        isRecordingInProgress,
+        formattedRecordingTime,
+        clearCanvas
+    } = recorderControls;
+
     return (
-        <div className='absolute bottom-2 left-2 right-2 z-10'>
-            <TextField
-                hiddenLabel
-                id="filled-chat-input-bar"
-                variant="filled"
-                size="small"
-                placeholder="Type a message"
-                fullWidth
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                inputRef={inputRef}
-                sx={(theme) => ({
-                    "& .MuiFilledInput-root": {
-                        borderRadius: 8,
-                        boxShadow: "0px 2px 2px rgba(0,0,0,0.08)",
-                        paddingY: "5px",
-                        paddingX: "5px",
-                        backgroundColor:
-                            theme.palette.mode === "dark" ? "#242626" : "#ffffff",
-                        "&.Mui-focused": {
-                            outline: "none",
-                            backgroundColor:
-                                theme.palette.mode === "dark" ? "#242626" : "#ffffff",
-                        },
-                        "&:hover": {
-                            backgroundColor:
-                                theme.palette.mode === "dark" ? "#242626" : "#ffffff",
-                        },
-                        "&::before": { display: "none" },
-                        "&::after": { display: "none" },
-                    }
-                })}
-                InputProps={{
-                    disableUnderline: true,
-                    startAdornment: (
-                        <InputAdornment
-                            position="start"
+        <div className='absolute bottom-2 left-2 right-2 z-10 md:max-w-7xl md:mx-auto'>
+            {isRecordingInProgress ? (
+                <div className="w-full flex-row p-1.25 rounded-full shadow-sm bg-gray-100 dark:bg-[#242626] flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                        <IconButton onClick={() => { stopRecording(); clearCanvas(); }} size="medium">
+                            <DeleteOutlined />
+                        </IconButton>
+                        <RecordTimer
+                            recordingTime={formattedRecordingTime}
+                        />
+                        <div className="flex-1 mx-2 min-w-96">
+                            <VoiceVisualizer
+                                key={isRecordingInProgress ? "recording" : "idle"}
+                                controls={recorderControls}
+                                isControlPanelShown={false}
+                                rounded={10}
+                                height={24}
+                            />
+                        </div>
+                        <IconButton
+                            onClick={() => togglePauseResume()}
+                            size="medium"
                         >
-                            <ChatRoomInputAttachButton />
-                            <ChatRoomInputEmojiButton />
-                        </InputAdornment>
-                    ),
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton size="medium">
-                                <MicNoneOutlined />
-                            </IconButton>
-                        </InputAdornment>
-                    ),
-                }}
-            />
+                            {isPausedRecording ? <PlayArrow /> : <Pause />}
+                        </IconButton>
+                        <IconButton
+                            onClick={() => { stopRecording(); clearCanvas(); }}
+                            size="medium"
+                            sx={{
+                                backgroundColor: "#25D366",
+                                color: "#161717",
+                                "&:hover": { backgroundColor: "#25D366", color: "#161717" },
+                            }}
+                        >
+                            <Send />
+                        </IconButton>
+                    </div>
+                </div>
+            ) : (
+                <TextField
+                    hiddenLabel
+                    id="filled-chat-input-bar"
+                    variant="filled"
+                    size="small"
+                    placeholder="Type a message"
+                    fullWidth
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    inputRef={inputRef}
+                    sx={(theme) => ({
+                        "& .MuiFilledInput-root": {
+                            borderRadius: 8,
+                            boxShadow: "0px 2px 2px rgba(0,0,0,0.08)",
+                            paddingY: "5px",
+                            paddingX: "5px",
+                            backgroundColor:
+                                theme.palette.mode === "dark" ? "#242626" : "#ffffff",
+                            "&.Mui-focused": {
+                                outline: "none",
+                                backgroundColor:
+                                    theme.palette.mode === "dark" ? "#242626" : "#ffffff",
+                            },
+                            "&:hover": {
+                                backgroundColor:
+                                    theme.palette.mode === "dark" ? "#242626" : "#ffffff",
+                            },
+                            "&::before": { display: "none" },
+                            "&::after": { display: "none" },
+                        }
+                    })}
+                    InputProps={{
+                        disableUnderline: true,
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <ChatRoomInputAttachButton />
+                                <ChatRoomInputEmojiButton
+                                    messageInput={value}
+                                    setMessageInput={setValue}
+                                />
+                            </InputAdornment>
+                        ),
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    onClick={() => startRecording()}
+                                    size="medium"
+                                    onMouseEnter={() => setMicHover(true)}
+                                    onMouseLeave={() => setMicHover(false)}
+                                    sx={{
+                                        transition: "background-color 0.2s ease",
+                                        "&:hover": { backgroundColor: "#25D366", color: "#161717" },
+                                    }}
+                                >
+                                    {micHover ? <Mic /> : <MicNoneOutlined />}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+            )}
         </div>
-    )
+    );
 }
