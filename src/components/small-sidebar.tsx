@@ -59,6 +59,7 @@ export default function SmallSideBar({ activeNav, setActiveNav, setActiveSideBar
                                     backgroundColor: '#25D366',
                                     color: theme.palette.mode === "dark" ? "#000000" : "#ffffff",
                                 },
+                                color: activeNav === 'chats' ? theme.palette.mode === "dark" ? 'white' : 'black' : undefined
                             })}
                         >
                             {activeNav === 'chats' ? (

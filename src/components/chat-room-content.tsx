@@ -8,9 +8,11 @@ import List from "@mui/material/List";
 import { messages } from "@/mocks/messages";
 import ContextMenu from "@/context/menu";
 import { CheckBoxOutlined, DeleteForeverOutlined, DoDisturbOnOutlined, DoNotDisturbOutlined, HighlightOffOutlined, InfoOutlined, NotificationsOffOutlined, ThumbDownOutlined } from "@mui/icons-material";
+import ChatRoomInputSelectMode from "./chat-room-input-select-mode";
 
 export default function ChatRoomContent() {
-    const [isSelectMode, setIsSelectMode]= useState(false);
+    const [isSelectMode, setIsSelectMode] = useState(false);
+    const [selectedMessages, setSelectedMessages] = useState<string[]>([]);
 
     return (
         <Box
@@ -46,10 +48,20 @@ export default function ChatRoomContent() {
                         key={index}
                         message={item}
                         isSelectMode={isSelectMode}
+                        selectedMessages={selectedMessages}
+                        setSelectedMessages={setSelectedMessages}
                     />
                 ))}
             </List>
-            <ChatRoomInputForm />
+            {isSelectMode ? (
+                <ChatRoomInputSelectMode
+                    setSelectMode={setIsSelectMode}
+                    selectedCount={selectedMessages.length}
+                    setSelectedMessages={setSelectedMessages}
+                />
+            ) : (
+                <ChatRoomInputForm />
+            )}
             <ContextMenu
                 items={[
                     { label: "Contact Info", onClick: () => { }, icon: <InfoOutlined fontSize="medium" /> },

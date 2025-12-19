@@ -25,23 +25,26 @@ export default function ChatRoomInputForm() {
     } = recorderControls;
 
     return (
-        <div className='absolute bottom-2 left-2 right-2 z-10 md:max-w-7xl md:mx-auto'>
+        <div className='absolute bottom-2 left-2 right-2 z-50 md:max-w-7xl md:mx-auto'>
             {isRecordingInProgress ? (
-                <div className="w-full flex-row p-1.25 rounded-full shadow-sm bg-gray-100 dark:bg-[#242626] flex items-center justify-between">
-                    <div className="flex items-center gap-1">
+                <div className="w-full relative flex-row p-1.25 rounded-full shadow-sm bg-gray-100 dark:bg-[#242626] flex items-center justify-between">
+                    <div className="flex items-center gap-1 relative">
                         <IconButton onClick={() => { stopRecording(); clearCanvas(); }} size="medium">
                             <DeleteOutlined />
                         </IconButton>
                         <RecordTimer
                             recordingTime={formattedRecordingTime}
                         />
-                        <div className="flex-1 mx-2 min-w-96">
+                        <div className="flex-1 mx-2 min-w-100 relative overflow-hidden">
                             <VoiceVisualizer
                                 key={isRecordingInProgress ? "recording" : "idle"}
                                 controls={recorderControls}
                                 isControlPanelShown={false}
                                 rounded={10}
-                                height={24}
+                                height={40}
+                                barWidth={4}
+                                speed={0.5}
+                                width={'100%'}
                             />
                         </div>
                         <IconButton

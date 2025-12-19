@@ -15,7 +15,7 @@ export default function LargeSideBar({ activeSideBar, setActiveSideBar }: Props)
     const customEasing: [number, number, number, number] = [0.32, 0, 0.67, 0];
     
     return (
-        <div className="md:flex hidden flex-col w-full xl:max-w-lg lg:max-w-md sm:max-w-xs max-w-xs h-full bg-white dark:bg-[#161717] relative overflow-hidden">
+        <div className="md:flex hidden flex-col w-full xxl:max-w-lg xl:max-w-md sm:max-w-xs max-w-xs h-full bg-white dark:bg-[#161717] relative overflow-hidden">
             <div className="absolute w-full z-0">
                 <ChatsSectionLargeSideBar
                     data={mockChats}
