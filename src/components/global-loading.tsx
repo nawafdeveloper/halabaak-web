@@ -13,7 +13,7 @@ export default function GlobalLoading() {
                     alt="HalaBaak Corp.©"
                     width={500}
                     height={500}
-                    className="w-auto h-6 object-contain"
+                    className="w-auto h-8 object-contain"
                 />
                 <Box sx={{ width: "200px" }}>
                     <LinearProgress

@@ -5,7 +5,6 @@ import { headers } from "next/headers";
 import MainClientUIAuthWrapper from "@/components/main-client-ui-auth-warper";
 import MainClientUIAppWrapper from "@/components/main-client-ui-app-warper";
 
-// Using Rubik instead of Roboto
 const rubik = Rubik({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],

@@ -17,7 +17,7 @@ export default function ChatsHeaderLargeSideBar({ setActiveSideBar }: Props) {
                 alt="HalaBaak Corp.©"
                 width={200}
                 height={200}
-                className="w-auto h-5 object-contain"
+                className="w-auto h-7 object-contain"
             />
             <div className="flex flex-row items-center gap-x-3">
                 <Tooltip

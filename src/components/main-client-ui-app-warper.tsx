@@ -15,7 +15,7 @@ export default function MainClientUIAppWrapper({ children }: { children: React.R
 
     useEffect(() => {
         const raf = requestAnimationFrame(() => {
-            setTimeout(() => setIsLoaded(true), 1000);
+            setIsLoaded(true);
         });
         return () => cancelAnimationFrame(raf);
     }, []);
