@@ -2,12 +2,15 @@
 @import '@vidstack/react/player/styles/default/theme.css';
 @import '@vidstack/react/player/styles/default/layouts/video.css';
 @import 'react-lazy-load-image-component/src/effects/blur.css';
+@import 'react-h5-audio-player/lib/styles.css';
 
 :root {
   --background: #f7f5f3;
   --foreground: #1C1E21;
   --primary: #25D366;
   --font-rubik: 'Rubik', sans-serif;
+  --card-background: #ffffff;
+  --slider-background: #c8c8c8;
 }
 
 @theme inline {
@@ -19,6 +22,8 @@
   :root {
     --background: #161717;
     --foreground: #f7f5f3;
+    --card-background: #222424;
+    --slider-background: #5c5c5c;
   }
 }
 
@@ -83,4 +88,48 @@ body {
   /* Applies when scaling thumbnails down. */
   --media-thumbnail-max-width: 180px;
   --media-thumbnail-max-height: calc(var(--media-thumbnail-max-width) / var(--aspect-ratio));
+}
+
+.rhap_container {
+  background-color: var(--card-background) !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.rhap_main-controls-button {
+  color: white !important;
+}
+
+.rhap_progress-bar-show-download {
+  height: 3px !important;
+  border-radius: 10px !important;
+}
+
+.rhap_download-progress {
+  background-color: var(--slider-background) !important;
+}
+
+.rhap_progress-indicator {
+  width: 10px !important;
+  height: 10px !important;
+  top: -4px !important;
+  background-color: #25D366 !important;
+}
+
+.rhap_progress-filled {
+  background-color: #25D366 !important;
+}
+
+.rhap_current-time {
+  color: var(--foreground) !important;
+  font-size: 14px !important;
+  margin-right: 6px !important;
+}
+
+.rhap_controls-section {
+  margin-right: 0 !important;
+}
+
+.rhap_progress-section {
+  display: none !important;
 }

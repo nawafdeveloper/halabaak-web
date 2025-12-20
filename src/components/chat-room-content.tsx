@@ -44,7 +44,6 @@ export default function ChatRoomContent() {
             >
                 {messages.map((item, index) => (
                     <ChatRoomMessageBubble
-                        value={index}
                         key={index}
                         message={item}
                         isSelectMode={isSelectMode}

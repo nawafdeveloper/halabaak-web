@@ -27,7 +27,7 @@ export default function ChatRoomInputForm() {
     return (
         <div className='absolute bottom-2 left-2 right-2 z-50 md:max-w-7xl md:mx-auto'>
             {isRecordingInProgress ? (
-                <div className="w-full relative flex-row p-1.25 rounded-full shadow-sm bg-gray-100 dark:bg-[#242626] flex items-center justify-between">
+                <div className="lg:w-161 w-100 relative mx-auto flex-row p-1.25 rounded-full shadow-sm bg-gray-100 dark:bg-[#242626] flex items-center justify-between">
                     <div className="flex items-center gap-1 relative">
                         <IconButton onClick={() => { stopRecording(); clearCanvas(); }} size="medium">
                             <DeleteOutlined />
@@ -35,7 +35,7 @@ export default function ChatRoomInputForm() {
                         <RecordTimer
                             recordingTime={formattedRecordingTime}
                         />
-                        <div className="flex-1 mx-2 min-w-100 relative overflow-hidden">
+                        <div className="flex-1 mx-2 lg:min-w-100 min-w-40 relative overflow-hidden">
                             <VoiceVisualizer
                                 key={isRecordingInProgress ? "recording" : "idle"}
                                 controls={recorderControls}
@@ -44,7 +44,6 @@ export default function ChatRoomInputForm() {
                                 height={40}
                                 barWidth={4}
                                 speed={0.5}
-                                width={'100%'}
                             />
                         </div>
                         <IconButton

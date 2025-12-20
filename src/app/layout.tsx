@@ -12,8 +12,8 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "HalaBaak",
-  description: "HalaBaak | Secure and Reliable Free Private Messaging",
+  title: "YaaHala",
+  description: "YaaHala | Secure and Reliable Free Private Messaging",
 };
 
 export default async function RootLayout({
